@@ -3,6 +3,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -14,7 +15,7 @@ public var wynik_losowania = 0;
 
 lateinit var rzut: Button;
 lateinit var reset: Button;
-
+lateinit var wynik: TextView;
 lateinit var kostka1: ImageView;
 lateinit var kostka2: ImageView;
 lateinit var kostka3: ImageView;
@@ -33,7 +34,8 @@ class MainActivity : AppCompatActivity() {
         }
         rzut = findViewById(R.id.rzut)
         reset = findViewById(R.id.reset)
-
+        wynik = findViewById(R.id.wynik_losowania)
+        wynik_gry = findViewById(R.id.wynik_gry)
         kostka1 = findViewById(R.id.imageView14)
         kostka2 = findViewById(R.id.imageView15)
         kostka3 = findViewById(R.id.imageView16)
@@ -47,47 +49,46 @@ class MainActivity : AppCompatActivity() {
 
 }
 
-fun losowanie(view: View?)
-{
+
+
+fun losowanie(view: View?) {
+
     val num_array: Array<Int?> = arrayOfNulls(5)
-    var array_of_images: Array<ImageView?> = arrayOfNulls(5)
-    array_of_images.set(0, kostka1)
-    array_of_images.set(1, kostka2)
-    array_of_images.set(2, kostka3)
-    array_of_images.set(3, kostka4)
-    array_of_images.set(4, kostka5)
+    val array_of_images: Array<ImageView?> = arrayOfNulls(5)
 
-    for (x in 1..5)
-    {
-        var random_number =  (0..5).random()
-        num_array.set(x, random_number)
-        wynik_gry = random_number
+    array_of_images[0] = kostka1
+    array_of_images[1] = kostka2
+    array_of_images[2] = kostka3
+    array_of_images[3] = kostka4
+    array_of_images[4] = kostka5
 
-        if(random_number == 1)
-        {
-            array_of_images.get(x)?.setImageResource(R.drawable.k1)
-        }
-        if(random_number == 2)
-        {
-            array_of_images.get(x)?.setImageResource(R.drawable.k2)
-        }
-        if(random_number == 3)
-        {
-            array_of_images.get(x)?.setImageResource(R.drawable.k3)
-        }
-        if(random_number == 4)
-        {
-            array_of_images.get(x)?.setImageResource(R.drawable.k4)
-        }
-        if(random_number == 5)
-        {
-            array_of_images.get(x)?.setImageResource(R.drawable.k5)
-        }
 
+    wynik_losowania = 0
+
+    for (x in 0..4) {
+
+        val random_number = (1..6).random()
+        num_array[x] = random_number
+
+        wynik_gry += random_number
+
+        when(random_number) {
+            1 -> array_of_images[x]?.setImageResource(R.drawable.k1)
+            2 -> array_of_images[x]?.setImageResource(R.drawable.k2)
+            3 -> array_of_images[x]?.setImageResource(R.drawable.k3)
+            4 -> array_of_images[x]?.setImageResource(R.drawable.k4)
+            5 -> array_of_images[x]?.setImageResource(R.drawable.k5)
+            6 -> array_of_images[x]?.setImageResource(R.drawable.k6)
+        }
     }
 
+    wynik.text = "Wynik"
+}
 
+fun reset(view: View?) {
+    wynik_gry = 0
 
+}
 
 
 
