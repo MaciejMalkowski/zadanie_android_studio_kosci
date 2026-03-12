@@ -57,24 +57,36 @@ fun losowanie(view: View?)
     array_of_images.set(3, kostka4)
     array_of_images.set(4, kostka5)
 
-    for(x in 1..5)
-    {
-        num_array.set(x, (1..5).random())
-    }
-
-
     for (x in 1..5)
     {
         var random_number =  (0..5).random()
         num_array.set(x, random_number)
         wynik_gry = random_number
+
+        if(random_number == 1)
+        {
+            array_of_images.get(x)?.setImageResource(R.drawable.k1)
+        }
+        if(random_number == 2)
+        {
+            array_of_images.get(x)?.setImageResource(R.drawable.k2)
+        }
+        if(random_number == 3)
+        {
+            array_of_images.get(x)?.setImageResource(R.drawable.k3)
+        }
+        if(random_number == 4)
+        {
+            array_of_images.get(x)?.setImageResource(R.drawable.k4)
+        }
+        if(random_number == 5)
+        {
+            array_of_images.get(x)?.setImageResource(R.drawable.k5)
+        }
+
     }
 
-    for(x in 1..5)
-    {
-        if(x == 1)
-        array_of_images.get(x).setImageDrawable()
-    }
+
 
 
 
